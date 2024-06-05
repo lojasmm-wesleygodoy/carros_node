@@ -6,7 +6,7 @@ O back utiliza as seguintes tecnologias:
 
 1. Para executá-lo primeiramente instale o banco de dados Postgres, download [aqui](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 
-2. Dentro da pasta `back\src\sql` estão as DDL's das tabelas utilizadas no sistemas, execute-as no seu banco Postgres
+2. No arquivo `back\sql\ddls.sql` estão as DDL's das tabelas utilizadas no sistemas, execute-as no seu banco Postgres
 
 3. Instale o node, download [aqui](https://nodejs.org/en/download/package-manager)
 
