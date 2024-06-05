@@ -1,6 +1,19 @@
 const database = require("../config/database");
 
 class ModeloModel {
+  async listarTodosModelos(idModelo) {
+    try {
+      const sql = `SELECT id, nome, ano, cor, id_marca FROM estudos.modelo`;
+
+      const { rows } = await database.query(sql);
+
+      return rows && rows.length > 0 ? rows : null;
+    } catch (error) {
+      console.log("Ocorreu um erro ao tentar listar todos os modelos no banco de dados.");
+      throw new Error("Ocorreu um erro ao tentar listar todos os modelos no banco de dados.");
+    }
+  }
+
   async consultarModelo(idModelo) {
     try {
       const sql = `SELECT id, nome, ano, cor, id_marca FROM estudos.modelo WHERE id = ${idModelo};`;

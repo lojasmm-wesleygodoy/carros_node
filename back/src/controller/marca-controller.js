@@ -1,6 +1,15 @@
 const marcaModel = require("../model/marca-model");
 
 class Marca {
+  async listarTodasMarcas(req, res) {
+    try {
+      const marca = await marcaModel.listarTodasMarcas(req.params.idMarca);
+      return res.status(200).send({ marca });
+    } catch (error) {
+      return res.status(400).send({ msg: `Opss... ${error.message}` });
+    }
+  }
+
   async consultarMarca(req, res) {
     try {
       const marca = await marcaModel.consultarMarca(req.params.idMarca);

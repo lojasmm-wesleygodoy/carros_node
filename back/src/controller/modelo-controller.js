@@ -1,6 +1,15 @@
 const modeloModel = require("../model/modelo-model");
 
 class Modelo {
+  async listarTodosModelos(req, res) {
+    try {
+      const modelo = await modeloModel.listarTodosModelos(req.params.idModelo);
+      return res.status(200).send({ modelo });
+    } catch (error) {
+      return res.status(400).send({ msg: `Opss... ${error.message}` });
+    }
+  }
+
   async consultarModelo(req, res) {
     try {
       const modelo = await modeloModel.consultarModelo(req.params.idModelo);

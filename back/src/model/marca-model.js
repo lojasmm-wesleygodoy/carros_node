@@ -1,6 +1,19 @@
 const database = require("../config/database");
 
 class MarcaModel {
+  async listarTodasMarcas() {
+    try {
+      const sql = `SELECT id, nome, criado_em, atualizado_em FROM estudos.marca;`;
+
+      const { rows } = await database.query(sql);
+
+      return rows && rows.length > 0 ? rows : null;
+    } catch (error) {
+      console.log("Ocorreu um erro ao tentar listar todas as marcas no banco de dados.");
+      throw new Error("Ocorreu um erro ao tentar listar todas as marcas no banco de dados.");
+    }
+  }
+
   async consultarMarca(idMarca) {
     try {
       const sql = `SELECT id, nome, criado_em, atualizado_em FROM estudos.marca WHERE id = ${idMarca};`;

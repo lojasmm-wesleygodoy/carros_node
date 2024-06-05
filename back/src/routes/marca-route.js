@@ -2,6 +2,7 @@ const marcaController = require("../controller/marca-controller");
 
 const router = require("express").Router();
 
+router.get("/listar-todas", marcaController.listarTodasMarcas);
 router.get("/consultar/:idMarca", marcaController.consultarMarca);
 router.post("/criar", marcaController.criarMarca);
 router.put("/atualizar", marcaController.atualizarMarca);
