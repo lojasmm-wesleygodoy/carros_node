@@ -21,3 +21,5 @@ O back utiliza as seguintes tecnologias:
 7. Dentro da pasta `back` execute o comando `npm run dev`
 
 Pronto, sua aplicação está rodando e pronta para ser consumida!
+
+Tip: o arquivo `back\dev_resources\requisicoes-to-import.json` está as requisições para utilizar no [insomnia](https://insomnia.rest/download)
