@@ -1,0 +1,46 @@
+<%- include('header'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Marcas</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Marcas</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Mostrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% marca.forEach(function(marca) { %>
+                <tr>
+                    <th scope="row"><%= marca.id %></th>
+                    <td><%= marca.nome %></td>
+                    <td>
+                        <a href="/api/v1/marca/editar/<%= marca.id %>">
+                            <button type="button" class="btn btn-success">Editar</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/api/v1/marca/consultar/<%= marca.id %>">
+                            <button type="button" class="btn btn-success">Consultar</button>
+                        </a>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<%- include('footer'); %>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Marca</title>
+</head>
+<body>
+    <h1>Excluir Marca</h1>
+    <p>Você tem certeza que deseja excluir a marca <%= marca.nome %>?</p>
+    <form action="/api/v1/marca/excluir/<%= marca.id %>" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit">Excluir</button>
+    </form>
+</body>
+</html>

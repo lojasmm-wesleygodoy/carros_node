@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Marca</title>
+</head>
+<body>
+    <h1>Editar Marca</h1>
+    <form action="/api/v1/marca/<%= marca.id %>" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="<%= marca.nome %>">
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
