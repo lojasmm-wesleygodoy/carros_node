@@ -23,3 +23,5 @@ O back utiliza as seguintes tecnologias:
 Pronto, sua aplicação está rodando e pronta para ser consumida!
 
 Tip: o arquivo `back\dev_resources\requisicoes-to-import.json` está as requisições para utilizar no [insomnia](https://insomnia.rest/download)
+
+Tip 2: para rodar o front instale o extensão [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer). Para rodá-lo basta clicar em "Go Live" no canto inferior direito do seu VS Code.
