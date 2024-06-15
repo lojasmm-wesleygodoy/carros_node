@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Modelo</title>
+  <link rel="stylesheet" href="/front/public/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div id="header"></div>
+  <div class="container">
+    <h1 class="mt-4">Editar Modelo</h1>
+    <form id="form-editar-modelo">
+      <div class="form-group mt-2">
+        <input type="hidden" id="id-modelo" value="">
+        <input type="text" id="nome-modelo" class="form-control mt-2" placeholder="Nome do Modelo" required>
+      </div>
+      <div class="form-group mt-2">
+        <input type="text" id="ano-modelo" class="form-control mt-2" placeholder="Ano do Modelo" required>
+      </div>
+      <div class="form-group mt-2">
+        <input type="text" id="cor-modelo" class="form-control mt-2" placeholder="Cor do Modelo" required>
+      </div>
+      <div class="form-group mt-2">
+        <input type="text" id="marca-modelo" class="form-control mt-2" placeholder="Marca do Modelo" disabled>
+        <!-- Campo oculto para armazenar o ID da marca -->
+        <input type="hidden" id="id-marca" value="">
+      </div>
+      <button type="submit" class="btn btn-primary mt-4">Salvar</button>
+    </form>
+    
+  </div>
+  <div id="footer"></div>
+  <script src="../js/modelos.js"></script>
+  <script src="../js/layout.js"></script>
+</body>
+
+</html>
