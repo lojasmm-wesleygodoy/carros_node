@@ -7,22 +7,22 @@ async function listarMarcas() {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
-    
+
     // Encontre o elemento UL no HTML onde a lista será inserida
     const listaMarcas = document.getElementById('lista-marcas');
-    
+
     // Limpe a lista antes de adicionar novos itens (opcional, dependendo do uso)
     listaMarcas.innerHTML = '';
 
     // Itere sobre o array de marcas e adicione cada uma à lista
     data.marca.forEach(marca => {
       const listItem = document.createElement('li');
-      listItem.classList.add('list-group-item' ,'d-flex' ,'justify-content-between'); 
-      
+      listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between');
+
       // Crie um span para o nome da marca
       const marcaNome = document.createElement('span');
       marcaNome.textContent = `${marca.nome}`;
-      
+
       const div = document.createElement('div');
       div.style.display = 'flex';
       div.style.gap = '10px';
@@ -33,11 +33,10 @@ async function listarMarcas() {
       editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
       editButton.classList.add('btn', 'btn-primary', 'btn-sm', 'ml-2');
       editButton.addEventListener('click', () => {
-        // Função de edição
-        editarMarca(marca.id, marca.nome);
-      });
+        editarMarca(marca);
+      })
 
-      
+
       // Crie o botão Consultar
       const viewButton = document.createElement('button');
       viewButton.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>';
@@ -46,7 +45,7 @@ async function listarMarcas() {
         // Função de consulta
         consultarMarca(marca.id, marca.nome);
       });
-      
+
       // Crie o botão Deletar
       const deleteButton = document.createElement('button');
       deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -62,7 +61,7 @@ async function listarMarcas() {
       // Adicione os elementos criados ao listItem
       listItem.appendChild(marcaNome);
       listItem.appendChild(div);
-      
+
       // Adicione o listItem à lista
       listaMarcas.appendChild(listItem);
     });
@@ -72,17 +71,17 @@ async function listarMarcas() {
   }
 }
 
-function editarMarca(id, nome) {
-  window.location.href = `editar-marca.html?id=${id}&nome=${encodeURIComponent(nome)}`;
+function editarMarca(marca) {
+  localStorage.setItem('marcaParaEditar', JSON.stringify(marca));
+  window.location.href = 'editar-marca.html';
 }
-
 
 function consultarMarca(id, nome) {
   const url = `consultar-marca.html?id=${id}&nome=${encodeURIComponent(nome)}`;
   window.location.href = url;
 }
 
-
+//Funcao para mostrar confirmacao de exlusao
 function mostrarModalExclusao(id) {
   const modal = document.getElementById('confirmarExclusaoModal');
   const modalBackdrop = document.createElement('div');
@@ -116,7 +115,7 @@ async function excluirMarca(id) {
     console.error('Erro ao excluir marca:', error);
   }
 }
-
+//Evento para cadastrar marca
 async function cadastrarMarca(event) {
   event.preventDefault(); // Previne o comportamento padrão do formulário
 
@@ -137,7 +136,7 @@ async function cadastrarMarca(event) {
 
     // Após cadastrar, listar as marcas novamente para atualizar a lista
     listarMarcas();
-    window.location.href = "lista-marcas.html" ;
+    window.location.href = "lista-marcas.html";
   } catch (error) {
     console.error('Erro ao cadastrar marca:', error);
   }
@@ -149,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //Tratamento para o evento de criar marca
 const form = document.getElementById('form-cadastrar-marca')
-if(form){
-  document.addEventListener('DOMContentLoaded', () =>{
+if (form) {
+  document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', cadastrarMarca);
   })
 }
@@ -160,16 +159,16 @@ if (marcaDetalhesElement) {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   const nome = decodeURIComponent(params.get('nome'));
-  
+
   if (id && nome) {
     const idItem = document.createElement('li');
     idItem.classList.add('list-group-item');
     idItem.textContent = `Id : ${id}`;
-    
+
     const nomeItem = document.createElement('li');
     nomeItem.classList.add('list-group-item');
     nomeItem.textContent = `Nome : ${nome}`;
-    
+
     marcaDetalhesElement.appendChild(idItem);
     marcaDetalhesElement.appendChild(nomeItem);
   } else {
@@ -179,3 +178,35 @@ if (marcaDetalhesElement) {
     marcaDetalhesElement.appendChild(errorItem);
   }
 }
+//Evento para editar marca
+document.addEventListener('DOMContentLoaded', () => {
+  const marca = JSON.parse(localStorage.getItem('marcaParaEditar'));
+
+  if (marca) {
+    document.getElementById('id-marca').value = marca.id;
+    document.getElementById('nome-marca').value = marca.nome;
+
+    document.getElementById('form-editar-marca').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const novoNome = document.getElementById('nome-marca').value;
+
+      try {
+        const response = await fetch(`${baseUrlMarcas}/atualizar`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: marca.id, nome: novoNome })
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        window.location.href = 'lista-marcas.html';
+      } catch (error) {
+        console.error('Erro ao atualizar marca:', error);
+      }
+    });
+  }
+});
