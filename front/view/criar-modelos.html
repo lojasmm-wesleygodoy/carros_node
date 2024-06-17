@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Modelo</title>
+  <link rel="stylesheet" href="/front/public/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div id="header"></div>
+  <div class="container">
+    <h1 class="mt-4 text-align" style="text-align: center;">Criar Modelo</h1>
+    <div class="row mt-4">
+      <div class="col-12 d-flex justify-content-center">
+        <form id="form-cadastrar-modelo">
+          <div class="form-group">
+            <form id="form-cadastrar-modelo">
+              <label for="nome-modelo" class="form-label">Nome do Modelo : </label>
+              <input type="text" class="form-control" id="nome-modelo" required>
+              <label for="ano-modelo" class="form-label">Ano do Modelo : </label>
+              <input type="text" class="form-control" id="ano-modelo" required>
+              <label for="cor-modelo" class="form-label">Cor do Modelo : </label>
+              <input type="text" class="form-control" id="cor-modelo" name="nome" required>
+              <label for="id-marca" class="form-label">Marca : </label>
+              <select id="id-marca" class="form-select" required>
+                <!-- Opções de marcas serão carregadas dinamicamente -->
+              </select>
+              <button type="submit" class="btn btn-primary mt-2">Criar Modelo</button>
+            </form>
+          </div>
+      </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../js/modelos.js"></script>
+    <script src="../js/layout.js"></script>
+</body>
+
+</html>

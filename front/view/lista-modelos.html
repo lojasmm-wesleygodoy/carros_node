@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Modelos</title>
+  <link rel="stylesheet" href="/front/public/css/bootstrap.min.css">
+  <link href="/front/icons/css/fontawesome.css" rel="stylesheet" />
+  <link href="/front/icons/css/brands.css" rel="stylesheet" />
+  <link href="/front/icons/css/solid.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="header"></div>
+  <div class="row">
+    <h1 class="col-12 d-flex justify-content-center">Modelos</h1>
+    <div class="col-12 d-flex justify-content-center">
+      <ul class="list-group" id="lista-modelos"></ul>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmação de Exclusão -->
+  <div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" role="dialog"
+    aria-labelledby="confirmarExclusaoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmarExclusaoModalLabel">Confirmar Exclusão</h5>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja excluir esta modelo?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" id="confirmarExclusaoBtn">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+  <script src="../js/modelos.js"></script>
+  <script src="../js/layout.js"></script>
+</body>
+
+</html>
